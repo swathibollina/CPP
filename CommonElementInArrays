@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+	// Given two arrays, find common elements using a map.
+	int a1[5]={12,35,2,112,37};
+	int a2[6]={12,34,37,35,56,78};
+	map<int,int> m;
+	for(int i=0;i<5;i++)
+	{
+	    m[a1[i]]++;
+	}
+	for(int i=0;i<6;i++)
+	{
+	    if(m.find(a2[i])==m.end())
+	        continue;
+	    else
+	        cout<<a2[i]<<endl;
+	}
+}
