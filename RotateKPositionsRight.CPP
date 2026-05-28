@@ -6,18 +6,28 @@ int main()
 	// Rotate a vector by K positions to the right.
 	vector<int> v={1,2,3,4,5};
 	vector<int> v1;
-	int k=12;
-	k=k%v.size();
-	for(int i=k+1;i<v.size();i++)
+	int k=10,n=v.size();
+	k=k%n;
+	if(k==0)
 	{
-	    v1.push_back(v[i]);
+	    for(int i=0;i<n;i++)
+	    {
+	        cout<<v[i]<<" ";
+	    }
 	}
-	for(int i=0;i<k+1;i++)
+	else
 	{
-	    v1.push_back(v[i]);
-	}
-	for(int i=0;i<v1.size();i++)
-	{
-	    cout<<v1[i]<<" ";
+	    for(int i=k+1;i<n;i++)
+	   {
+	        v1.push_back(v[i]);
+	    }
+	    for(int i=0;i<k+1;i++)
+	    {
+	        v1.push_back(v[i]);
+	    }
+	    for(int i=0;i<n;i++)
+	    {
+	        cout<<v1[i]<<" ";
+	    }   
 	}
 }
