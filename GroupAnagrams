@@ -1,0 +1,51 @@
+// User function Template for C++
+/*
+Input: arr[] = ["act", "god", "cat", "dog", "tac"]
+Output: [["act", "cat", "tac"], ["god", "dog"]]
+Explanation: There are 2 groups of anagrams "god", "dog" make group 1. "act", "cat", "tac" make group 2.
+Input: arr[] = ["no", "on", "is"]
+Output: [["is"], ["no", "on"]]
+Explanation: There are 2 groups of anagrams "is" makes group 1. "no", "on" make group 2.
+Input: arr[] = ["listen", "silent", "enlist", "abc", "cab", "bac", "rat", "tar", "art"]
+Output: [["abc", "cab", "bac"], ["listen", "silent", "enlist"], ["rat", "tar", "art"]]
+Explanation: 
+Group 1: "abc", "bac", and "cab" are anagrams.
+Group 2: "listen", "silent", and "enlist" are anagrams.
+Group 3: "rat", "tar", and "art" are anagrams.
+*/
+
+class Solution {
+  public:
+    vector<vector<string>> anagrams(vector<string>& arr) {
+        // code here
+        int n=arr.size();
+        vector<bool> is_pushed(n,false);
+        vector<vector<string>> ans;
+        for(int i=0;i<n;i++)
+        {
+            string curr=arr[i];
+            if(is_pushed[i]==false)
+            {
+                vector<string> curr_ans;
+                curr_ans.push_back(curr);
+                is_pushed[i]=true;
+                map<char,int> curr_map;
+                for(auto it: curr)
+                    curr_map[it]++;
+                for(int j=i+1;j<n;j++)
+                {
+                    map<char,int> temp_map;
+                    for(auto it:arr[j])
+                        temp_map[it]++;
+                    if(curr_map==temp_map)
+                    {
+                        curr_ans.push_back(arr[j]);
+                        is_pushed[j]=true;
+                    }
+                }
+                ans.push_back(curr_ans);
+            }
+        }
+        return ans;
+    }
+};
